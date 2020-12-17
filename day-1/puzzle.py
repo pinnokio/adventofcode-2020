@@ -25,8 +25,9 @@ def part_two(input_file):
     input = input_read(input_file)
     for i in range(len(input)) :
         for j in range(i + 1, len(input)):
-            if (input[i] + input[j]) == 2020:
-                return input[i] * input[j]
+            for k in range(j + 1, len(input)):
+                if (input[i] + input[j] + input[k]) == 2020:
+                    return input[i] * input[j] * input[k]
 
 
 def main():
@@ -40,6 +41,8 @@ def main():
     args = parser.parse_args()
     if args.number == 1:
         print("Answer: {}".format(part_one(INPUT_FILE)))
+    if args.number == 2:
+        print("Answer: {}".format(part_two(INPUT_FILE)))
 
 if __name__=="__main__":
     main()
