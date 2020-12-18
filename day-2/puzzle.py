@@ -39,31 +39,13 @@ def validate_passwords(passwords):
 def validate_passwords_2(passwords):
     valid_passwords_count = 0
     for item in passwords:
-        if item["char"] in item["pw"]:
-            count = 0
-            pos = item["pw"].find(item["char"])
-            fchar = int(item["min"]) - 1
-            schar = int(item["max"]) - 1
-            while pos != -1:
-                if pos in [fchar, schar]:
-                    count += 1
-                pos = item["pw"].find(item["char"], pos+1)
-        if count == 1:
-            valid_passwords_count += 1
+        fchar = item["pw"][int(item["min"]) - 1]
+        lchar = item["pw"][int(item["max"]) - 1]
+        char = item["char"]
+        if fchar == char or lchar == char:
+            if fchar != lchar:
+                valid_passwords_count += 1
     return valid_passwords_count
-
-
-# def validate_passwords_2(passwords):
-#     valid_passwords_count = 0
-#     for item in passwords:
-#         if item["char"] in item["pw"]:
-#             fchar = int(item["min"]) - 1
-#             schar = int(item["max"]) - 1
-#             if (item["pw"].find(item["char"], fchar, fchar) == -1 or
-#                     item["pw"].find(item["char"], schar, schar) == -1):
-#                 valid_passwords_count += 1
-#                 print("Char: {} in {} pos_min: {} pos_max {}".format(item["pw"], item["char"], item["min"], item["max"]))
-#     return valid_passwords_count
 
 
 def main():
